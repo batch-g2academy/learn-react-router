@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Movies from "./pages/Movies";
+import Profile from "./pages/Profile";
+import { Routes, Route } from 'react-router-dom';
+import PageNotFound from "./pages/PageNotFound";
+import MyNavbar from "./components/MyNavbar";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import { useState } from "react";
+
+/**
+ * 
+ * Halaman movie itu routing nya /movies
+ * Halaman profile itu routing nya /profile
+ */
 
 function App() {
+  const [ cart, setCart ] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hello World</h1>
+      <MyNavbar />
+      <Routes>
+        <Route path='/' element={ <Home/> }></Route>
+        <Route path='/movies' element={ <Movies setCart={setCart}/> }></Route>
+        <Route path='/profile' element={ <Profile /> }></Route>
+        <Route path='/cart'element={ <Cart cart={cart}/>}></Route>
+        <Route path='*' element={ <PageNotFound />}></Route>
+      </Routes>
     </div>
   );
 }
